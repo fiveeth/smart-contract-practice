@@ -81,7 +81,8 @@ contract CrowSale {
         if(goalReached && msg.sender == project.boss) {
             emit GoalReached(project.boss, project.raised);
 
-            payable(project.boss).transfer(project.raised);
+            // ether转换成wei这一步很重要
+            payable(project.boss).transfer(project.raised * (10**18));
 
             emit FundTransfered(project.boss, project.raised);
         }
